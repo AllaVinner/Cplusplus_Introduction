@@ -10,7 +10,7 @@ int main() {
 		cin >> guess;
 		correct = (guess == theNum); 
 		if (correct) break;
-		cout << "WRONG WRONG \a \a \a";
+		cout << "WRONG WRONG \a";
 	}
 	cout << "YOU GOT IT RIGHT!!!!";
 	return 0;
