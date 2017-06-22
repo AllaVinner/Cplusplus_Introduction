@@ -1,4 +1,3 @@
 ﻿  main.cpp
-c:\users\joel\documents\c++\cplusplus_introduction\introduction\roulette\roulette\main.cpp(40): warning C4101: 'winningNum': unreferenced local variable
   Roulette.vcxproj -> C:\Users\Joel\Documents\C++\Cplusplus_Introduction\Introduction\Roulette\Debug\Roulette.exe
   Roulette.vcxproj -> C:\Users\Joel\Documents\C++\Cplusplus_Introduction\Introduction\Roulette\Debug\Roulette.pdb (Partial PDB)
