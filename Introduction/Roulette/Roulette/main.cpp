@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "windows.h"
 using namespace std;
 
 /* Takes in a string and try if it it is possible to convert it into an integer.
@@ -134,7 +135,8 @@ int main() {
 				else cout << guess << "!!!!\n\n";
 
 				cout << "Let's spin that wheel!!!!!";
-				
+				Sleep(2000);
+
 				//Create the winning number and the colour of which
 				winningNum = rand() % 36 + 1;
 				winningColour = (winningNum % 2 == 0) ? BLACK : RED;
@@ -175,7 +177,7 @@ int main() {
 				}
 				cout << "This brings you balance to " << balance << "\n";
 
-				//Chack if you have positive balance
+				//Check if you have positive balance
 				if (balance <= 0) {
 					gameOver = true;
 				}
@@ -199,8 +201,6 @@ int main() {
 					} // End of switch
 				} //End of if
 
-
-
 			} // End of gameOver loop
 
 			if (balance > 0) {
@@ -209,8 +209,7 @@ int main() {
 			else {
 				cout << "Get out of here you know body and come back when you have money you rat!\n";
 			}
-
-			
+	
 	cin.ignore();
 	cin.get();
 }
