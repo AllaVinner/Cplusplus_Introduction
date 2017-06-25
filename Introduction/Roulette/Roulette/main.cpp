@@ -55,8 +55,7 @@ int main() {
 	cout << "Welcome to the wacky tacky macky Casino. You will start with a plesent gift of " << STARTINGBALANCE << "Wacky money. Todays game is .... ROULETTE!!!! \a" << endl;
 	
 		while (! gameOver) {
-				// The loop will run untill a godtagbart input is given, which will (later) be used to assigne a value to stake.
-				// Exwptible values: 1 - 3
+				// Handling of input (stake)
 				while (true) {
 					cout << "How much do you want to bet? \n1. 100 \n2. 300 \n3. 500 \nYou choose: ";
 					cin >> input;
@@ -79,8 +78,7 @@ int main() {
 				}
 				cout << "Well " << stake << " money it is :) \n\n";
 
-				// The loop will run until an exeptible input is given which (later) will be used to assigne a value to guess
-				// Exeptible value: 1 - 2
+				//Handling input (Decision to bet on colour or number)
 				while (true) {
 					cout << "Do you want to bet on colour or a number?\n"
 						<< "1. Colour \n2. Number\n"
@@ -91,7 +89,7 @@ int main() {
 					cout << "Please select a value within the range!\n";
 				}
 
-				// Guess is assiged a value based on the input. guess =(1 - 36, RED OR BLACK)
+				// Guess is assiged a value based on the input. guess =(1 - 36, RED or BLACK)
 				switch (tempNum)
 				{
 				case 1:						// Player will bet on colour
@@ -170,7 +168,7 @@ int main() {
 
 				//Give the player the results
 				if (gameWon) {
-					cout << "OMG you won!!!! You won " << stake << ". That is ammazing.\n";
+					cout << "OMG you won!!!! You won " << ((guess > 0) ? NUMBERMULT*stake : COLOURMULT*stake) << ". That is ammazing.\n";
 				}
 				else {
 					cout << "It is ammazing... mavelous... you... you lost! " << stake << "\n";
@@ -179,10 +177,12 @@ int main() {
 
 				//Check if you have positive balance
 				if (balance <= 0) {
+					//The game is over
 					gameOver = true;
 				}
 				else {
 					while (true) {
+						// Handling input (Do you want to play again?)
 						cout << "Do you want to play again?\n1. Yes\n2. No\n: ";
 						cin >> input;
 						tempNum = inputHandler(input);
@@ -203,8 +203,9 @@ int main() {
 
 			} // End of gameOver loop
 
+			//Casino saying godbye
 			if (balance > 0) {
-				cout << "So sorry to see you leaving, but well played.\nYou will be walking home with " << balance << "That is not ashame\n";
+				cout << "So sorry to see you leaving, but well played.\nYou will be walking home with " << balance << ". That is not ashame\n";
 			}
 			else {
 				cout << "Get out of here you know body and come back when you have money you rat!\n";
