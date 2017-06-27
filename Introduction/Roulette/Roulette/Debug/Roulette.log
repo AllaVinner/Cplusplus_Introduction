@@ -1,3 +1,2 @@
 ﻿  main.cpp
-  Roulette.vcxproj -> C:\Users\Joel\Documents\C++\Cplusplus_Introduction\Introduction\Roulette\Debug\Roulette.exe
-  Roulette.vcxproj -> C:\Users\Joel\Documents\C++\Cplusplus_Introduction\Introduction\Roulette\Debug\Roulette.pdb (Partial PDB)
+c:\users\joel\documents\c++\cplusplus_introduction\introduction\roulette\roulette\main.cpp(127): error C3861: 'Sleep': identifier not found

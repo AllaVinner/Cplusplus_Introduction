@@ -1,13 +1,9 @@
 #include <iostream>
 #include <string>
-#include "windows.h"
+#include "windows.h"			// Sleep function
 using namespace std;
 
-/* Takes in a string and try if it it is possible to convert it into an integer.
-   If "yes" the function returns that integer as an integer.
-   If "No" it will ask for a new input which is assiged to str. Then it repites
-*/
-
+//	Requests input until an integer is inserted which then is returned
 int inputHandler(string str) {
 	int i;
 	while (true) {
@@ -29,33 +25,28 @@ int main() {
 
 	// Initialization
 		// Odd is red and even numbers are black
-	
 	const int RED = -101;		//Vad ä bäst bool här? för då behövs 2 guess
 	const int BLACK = -102;
-	const int pathNUMBER = 1;
-	const int pathCOLOUR = 2;
 	const int STARTINGBALANCE = 1000;
 	const int NUMBERMULT = 10;
 	const int COLOURMULT = 2;
 	
-	int balance = STARTINGBALANCE;				// The starting balnce is to be 1000 money
+	int balance = STARTINGBALANCE;				// The courrent amount of money
 	int stake;									// The amount of money which is invested
-	int winningNum;								// The number which the roulette ball lands on. Note that the colour can be calculated
-	int winningColour;
-	//bool betOnNum;								// Is the player betting on a number or a colour? true -> number; false -> colour
-	int guess;
-	int tempNum;
-	bool gameWon = true;
-	bool gameOver = false;
-
-
-	string input;
+	int winningNum;								// The number which the roulette ball lands on.
+	int winningColour;							// The winning colour
+	int guess;									// The number or colour that the player betted on
+	int tempNum;								// Int to give the directions to the program
+	bool gameWon = true;						// If player won the game
+	bool gameOver = false;						// If the game isover (Choosen or forced)
+	string input;								// Iput from the player will be sent here
 
 	// Welcome to the casino
 	cout << "Welcome to the wacky tacky macky Casino. You will start with a plesent gift of " << STARTINGBALANCE << "Wacky money. Todays game is .... ROULETTE!!!! \a" << endl;
 	
+	// Game loop starts
 		while (! gameOver) {
-				// Handling of input (stake)
+				// Handling of input to stake
 				while (true) {
 					cout << "How much do you want to bet? \n1. 100 \n2. 300 \n3. 500 \nYou choose: ";
 					cin >> input;
@@ -78,7 +69,7 @@ int main() {
 				}
 				cout << "Well " << stake << " money it is :) \n\n";
 
-				//Handling input (Decision to bet on colour or number)
+				//Handling input to decide on bet on colour or number
 				while (true) {
 					cout << "Do you want to bet on colour or a number?\n"
 						<< "1. Colour \n2. Number\n"
@@ -88,21 +79,19 @@ int main() {
 					if (1 <= tempNum && tempNum <= 2) break;
 					cout << "Please select a value within the range!\n";
 				}
-
-				// Guess is assiged a value based on the input. guess =(1 - 36, RED or BLACK)
+				// Guess is assiged a value based on the input. guess =(1, ..., 36, RED or BLACK)
 				switch (tempNum)
 				{
-				case 1:						// Player will bet on colour
+				case 1:						// Player bets on colour
 					while (true) {
-						// The loop will run until an exeptible input is given which (later) will be used to assigne a value to guess
-						// Exeptible value: 1 - 2
+						//Handling input to guess
 						cout << "OKEY... so do you want to bet on red or black?\n1.Red\n2.Black\n";
 						cin >> input;
 						tempNum = inputHandler(input);
 						if (1 <= tempNum && tempNum <= 2) break;
 						cout << "Please select a value within the range!\n";
 					}
-					// Guess is assigned black or red
+					// guess is assigned black or red
 					switch (tempNum)
 					{
 					case 1:
@@ -112,10 +101,11 @@ int main() {
 						guess = BLACK;
 						break;
 					}
-					tempNum = 1;	// Reset tempNum to its value in the outher switch.  Was this a good idea?
+					tempNum = 1;	// Reset tempNum to its value in the outer switch.
 					break;
-				case 2:			//The player is betting on a number
+				case 2:			// Player betts on a number
 					while (true) {
+						//Handling input to guess
 						cout << "OKEY... so bet on a number between 1 and 36: ";
 						cin >> input;
 						tempNum = inputHandler(input);
@@ -127,11 +117,11 @@ int main() {
 					break;
 				}
 
+				// Tell player what they betted on
 				cout << "Then we will go with ";
 				if (guess == RED) cout << "red!!!!!\n\n";
 				else if (guess == BLACK) cout << "Black!!!!\n\n";
 				else cout << guess << "!!!!\n\n";
-
 				cout << "Let's spin that wheel!!!!!";
 				Sleep(2000);
 
@@ -140,12 +130,12 @@ int main() {
 				winningColour = (winningNum % 2 == 0) ? BLACK : RED;
 				cout << "THE WINNING NUMBER IS " << ((winningColour == BLACK) ? "BLACK " : "RED ") << winningNum << "\n\n";
 
-				//See if the player won
+				// Check if the player won
 				if (guess == ((guess > 0) ? winningNum : winningColour)) gameWon = true;
 				else gameWon = false;
 
-				// Change the value of balance and gameWon
-				if (guess > 0) {
+				// Adjust the value of balance and gameWon
+				if (guess > 0) {		// If player betted on number
 					if (guess == winningNum) {
 						gameWon = true;
 						balance += NUMBERMULT*stake;
@@ -155,7 +145,7 @@ int main() {
 						balance -= stake;
 					}
 				}
-				else {
+				else {					// If player betted on colour
 					if (guess == winningColour) {
 						gameWon = true;
 						balance += COLOURMULT*stake;
@@ -175,14 +165,13 @@ int main() {
 				}
 				cout << "This brings you balance to " << balance << "\n";
 
-				//Check if you have positive balance
+				//Check if player has positive balance and wants/can play again
 				if (balance <= 0) {
-					//The game is over
-					gameOver = true;
+					gameOver = true;		// Player is forced to quit
 				}
 				else {
 					while (true) {
-						// Handling input (Do you want to play again?)
+						// Handling input to gameOver
 						cout << "Do you want to play again?\n1. Yes\n2. No\n: ";
 						cin >> input;
 						tempNum = inputHandler(input);
@@ -190,6 +179,7 @@ int main() {
 						cout << "Please select a value within the range!\n";
 					}
 
+					// gameOver is assigned a value based on the input
 					switch (tempNum)
 					{
 					case 1:
