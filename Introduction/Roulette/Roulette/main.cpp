@@ -24,7 +24,7 @@ int inputHandler(string str) {
 int main() {
 
 	// Initialization
-		// Odd is red and even numbers are black
+		// Odd numbers are red and even numbers are black
 	const int RED = -101;		//Vad ä bäst bool här? för då behövs 2 guess
 	const int BLACK = -102;
 	const int STARTINGBALANCE = 1000;
@@ -42,11 +42,12 @@ int main() {
 	string input;								// Iput from the player will be sent here
 
 	// Welcome to the casino
-	cout << "Welcome to the wacky tacky macky Casino. You will start with a plesent gift of " << STARTINGBALANCE << "Wacky money. Todays game is .... ROULETTE!!!! \a" << endl;
+	cout << "Welcome to the Casino. You will start with a plesent gift of " << STARTINGBALANCE << " Wacky money. Todays game is ROULETTE!!!! \a" << endl;
 	
 	// Game loop starts
 		while (! gameOver) {
 				// Handling of input to stake
+			do{
 				while (true) {
 					cout << "How much do you want to bet? \n1. 100 \n2. 300 \n3. 500 \nYou choose: ";
 					cin >> input;
@@ -67,13 +68,15 @@ int main() {
 					stake = 500;
 					break;
 				}
-				cout << "Well " << stake << " money it is :) \n\n";
+				if (stake > balance) cout << "Please select something you can afford. \n";
+			} while (stake > balance);
+				cout << "You have betted " << stake << ".\n\n";
 
 				//Handling input to decide on bet on colour or number
 				while (true) {
 					cout << "Do you want to bet on colour or a number?\n"
 						<< "1. Colour \n2. Number\n"
-						<< "The multiplication thing is " << NUMBERMULT << " for numbers and " << COLOURMULT << " for colours.\n";
+						<< "We will multiply you bet by " << NUMBERMULT << " for a winning number and " << COLOURMULT << " for a colour.\n";
 					cin >> input;
 					tempNum = inputHandler(input);
 					if (1 <= tempNum && tempNum <= 2) break;
@@ -85,7 +88,7 @@ int main() {
 				case 1:						// Player bets on colour
 					while (true) {
 						//Handling input to guess
-						cout << "OKEY... so do you want to bet on red or black?\n1.Red\n2.Black\n";
+						cout << "Then we will go with colour. But is it going to be red or black?\n1.Red\n2.Black\n";
 						cin >> input;
 						tempNum = inputHandler(input);
 						if (1 <= tempNum && tempNum <= 2) break;
@@ -106,7 +109,7 @@ int main() {
 				case 2:			// Player betts on a number
 					while (true) {
 						//Handling input to guess
-						cout << "OKEY... so bet on a number between 1 and 36: ";
+						cout << "Let's go with a number. Pick a number between 1 and 36: ";
 						cin >> input;
 						tempNum = inputHandler(input);
 						if (1 <= tempNum && tempNum <= 36) break;
@@ -119,7 +122,7 @@ int main() {
 
 				// Tell player what they betted on
 				cout << "Then we will go with ";
-				if (guess == RED) cout << "red!!!!!\n\n";
+				if (guess == RED) cout << "Red!!!\n\n";
 				else if (guess == BLACK) cout << "Black!!!!\n\n";
 				else cout << guess << "!!!!\n\n";
 				cout << "Let's spin that wheel!!!!!";
@@ -158,10 +161,10 @@ int main() {
 
 				//Give the player the results
 				if (gameWon) {
-					cout << "OMG you won!!!! You won " << ((guess > 0) ? NUMBERMULT*stake : COLOURMULT*stake) << ". That is ammazing.\n";
+					cout << "OMG you won!!!! You won " << ((guess > 0) ? NUMBERMULT*stake : COLOURMULT*stake) << ". I meen congratulations sir...\n";
 				}
 				else {
-					cout << "It is ammazing... mavelous... you... you lost! " << stake << "\n";
+					cout << "LOL You lost " << stake << "\n";
 				}
 				cout << "This brings you balance to " << balance << "\n";
 
