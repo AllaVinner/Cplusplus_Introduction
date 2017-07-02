@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "windows.h"			// Sleep function
+#include "windows.h"			// inculdes Sleep function
 using namespace std;
 
 //	Requests input until an integer is inserted which then is returned
@@ -25,7 +25,7 @@ int main() {
 
 	// Initialization
 		// Odd numbers are red and even numbers are black
-	const int RED = -101;		//Vad ä bäst bool här? för då behövs 2 guess
+	const int RED = -101;
 	const int BLACK = -102;
 	const int STARTINGBALANCE = 1000;
 	const int NUMBERMULT = 10;
@@ -34,12 +34,12 @@ int main() {
 	int balance = STARTINGBALANCE;				// The courrent amount of money
 	int stake;									// The amount of money which is invested
 	int winningNum;								// The number which the roulette ball lands on.
-	int winningColour;							// The winning colour
+	int winningColour;							// The colour which the roulette ball lands on
 	int guess;									// The number or colour that the player betted on
-	int tempNum;								// Int to give the directions to the program
+	int tempNum;								// Used to handle input
 	bool gameWon = true;						// If player won the game
 	bool gameOver = false;						// If the game isover (Choosen or forced)
-	string input;								// Iput from the player will be sent here
+	string input;								// Input from the player will be sent here
 
 	// Welcome to the casino
 	cout << "Welcome to the Casino. You will start with a plesent gift of " << STARTINGBALANCE << " Wacky money. Todays game is ROULETTE!!!! \a" << endl;
@@ -68,11 +68,11 @@ int main() {
 					stake = 500;
 					break;
 				}
-				if (stake > balance) cout << "Please select something you can afford. \n";
+				if (stake > balance) cout << "Please select something you can afford.\n";
 			} while (stake > balance);
 				cout << "You have betted " << stake << ".\n\n";
 
-				//Handling input to decide on bet on colour or number
+				//Handling input to decide if player will bet on colour or number
 				while (true) {
 					cout << "Do you want to bet on colour or a number?\n"
 						<< "1. Colour \n2. Number\n"
@@ -82,7 +82,7 @@ int main() {
 					if (1 <= tempNum && tempNum <= 2) break;
 					cout << "Please select a value within the range!\n";
 				}
-				// Guess is assiged a value based on the input. guess =(1, ..., 36, RED or BLACK)
+				// Guess is assiged a value based on the input. guess =(1, ..., 36, RED, BLACK)
 				switch (tempNum)
 				{
 				case 1:						// Player bets on colour
@@ -115,6 +115,7 @@ int main() {
 						if (1 <= tempNum && tempNum <= 36) break;
 						cout << "Please select a value within the range!\n";
 					}
+					// Guess is assigned a value based on input
 					guess = tempNum;
 					tempNum = 2;
 					break;
