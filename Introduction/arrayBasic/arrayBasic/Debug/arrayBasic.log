@@ -1,0 +1,4 @@
+﻿  main.cpp
+c:\users\joel\documents\c++\mathobjects\function\function\main.h(9): warning C4101: 'temp': unreferenced local variable
+  arrayBasic.vcxproj -> C:\Users\Joel\Documents\C++\Cplusplus_Introduction\Introduction\arrayBasic\Debug\arrayBasic.exe
+  arrayBasic.vcxproj -> C:\Users\Joel\Documents\C++\Cplusplus_Introduction\Introduction\arrayBasic\Debug\arrayBasic.pdb (Partial PDB)

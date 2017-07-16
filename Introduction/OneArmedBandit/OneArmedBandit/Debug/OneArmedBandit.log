@@ -1,0 +1,5 @@
+﻿  main.cpp
+c:\users\joel\documents\c++\cplusplus_introduction\introduction\onearmedbandit\onearmedbandit\main.cpp(22): warning C4101: 'factors': unreferenced local variable
+c:\users\joel\documents\c++\cplusplus_introduction\introduction\onearmedbandit\onearmedbandit\main.cpp(20): warning C4101: 'rowCount': unreferenced local variable
+  OneArmedBandit.vcxproj -> C:\Users\Joel\Documents\C++\Cplusplus_Introduction\Introduction\OneArmedBandit\Debug\OneArmedBandit.exe
+  OneArmedBandit.vcxproj -> C:\Users\Joel\Documents\C++\Cplusplus_Introduction\Introduction\OneArmedBandit\Debug\OneArmedBandit.pdb (Partial PDB)
